@@ -34,6 +34,7 @@ const ShoeCard = ({
   return (
     <Link href={`/shoe/${slug}`}>
       <Wrapper>
+        <Badge variant={variant} />
         <ImageWrapper>
           <Image alt="" src={imageSrc} />
         </ImageWrapper>
@@ -50,13 +51,48 @@ const ShoeCard = ({
   );
 };
 
+function Badge({ variant }) {
+  if (variant === "on-sale") {
+    return <Pill color="#C5295D">Sale</Pill>;
+  }
+
+  if (variant === "new-release") {
+    return <Pill color="#6868D9">Just Released!</Pill>;
+  }
+
+  return null;
+}
+
 const Link = styled.a`
   text-decoration: none;
   color: inherit;
   flex: 1 1 340px;
 `;
 
-const Wrapper = styled.article``;
+const Pill = styled.div`
+  position: absolute;
+  top: 12px;
+  right: -4px;
+  z-index: 1;
+  border-radius: 2px;
+  background: red;
+  padding: 10px;
+  background-color: ${(props) => props.color};
+
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+
+  /* White */
+
+  color: #ffffff;
+`;
+
+const Wrapper = styled.article`
+  position: relative;
+`;
 
 const ImageWrapper = styled.div`
   position: relative;
